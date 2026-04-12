@@ -1,9 +1,5 @@
 # @ridit/hackclub-ai-sdk
 
-[npm version](https://www.npmjs.com/package/@ridit/hackclub-ai-sdk)
-[License: MIT](https://opensource.org/licenses/MIT)
-[Bundle size](https://bundlephobia.com/package/@ridit/hackclub-ai-sdk)
-
 A lightweight TypeScript SDK for the [Hack Club AI](https://ai.hackclub.com) API — **free AI credits for hackers**. Get text and image generation with a clean, type-safe interface.
 
 ## Why use this?
