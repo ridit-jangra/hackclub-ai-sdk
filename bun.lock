@@ -6,6 +6,7 @@
       "name": "@ridit/hackclub-ai-sdk",
       "dependencies": {
         "@openrouter/ai-sdk-provider": "^2.5.1",
+        "@ridit/hackclub-ai-sdk": "^0.1.2",
         "ai": "^6.0.158",
         "replicate": "^1.4.0",
       },
@@ -27,6 +28,8 @@
     "@openrouter/ai-sdk-provider": ["@openrouter/ai-sdk-provider@2.5.1", "", { "peerDependencies": { "ai": "^6.0.0", "zod": "^3.25.0 || ^4.0.0" } }, "sha512-r1fJL1Cb3gQDa2MpWH/sfx1BsEW0uzlRriJM6eihaKqbtKDmZoBisF32VcVaQYassighX7NGCkF68EsrZA43uQ=="],
 
     "@opentelemetry/api": ["@opentelemetry/api@1.9.0", "", {}, "sha512-3giAOQvZiH5F9bMlMiv8+GSPMeqg0dbaeo58/0SlA9sxSqZhnUtxzX9/2FzyhS9sWQf5S0GJE0AKBrFqjpeYcg=="],
+
+    "@ridit/hackclub-ai-sdk": ["@ridit/hackclub-ai-sdk@0.1.2", "", { "dependencies": { "@openrouter/ai-sdk-provider": "^2.5.1", "ai": "^6.0.158", "replicate": "^1.4.0" }, "peerDependencies": { "typescript": "^5" } }, "sha512-7uNfwlEhzulCIqXDnS+hT7tJhHBiVqUTLSlsvdYQcV+GhMEX/lYY8XoDCvY1hCD3DXCpusrLf1XMpJU5OIYs2A=="],
 
     "@standard-schema/spec": ["@standard-schema/spec@1.1.0", "", {}, "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w=="],
 
