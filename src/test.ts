@@ -1,12 +1,9 @@
 import { HackclubProvider } from "./provider";
 
-const asd = new HackclubProvider(process.env.API_KEY ?? "");
+const ai = new HackclubProvider(process.env.API_KEY ?? "");
 
-await asd.generateImage("sunset", undefined, { save: true });
-// → generated-1234567890.png
-
-// custom name (ext auto-handled by the model's mime type)
-await asd.generateImage("sunset", undefined, {
+const url = await ai.speak("Hello from Hack Club!", "minimax/speech-02-turbo", {
   save: true,
-  filename: "my-sunset.png",
+  voice: "English_AnimeCharacter",
 });
+console.log(url);
