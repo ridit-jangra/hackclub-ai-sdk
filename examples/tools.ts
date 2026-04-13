@@ -1,12 +1,10 @@
-import { HackclubProvider } from "@ridit/hackclub-ai-sdk";
+import { HackclubProvider } from "../src";
 import { tool } from "ai";
 import { z } from "zod";
 
 const ai = new HackclubProvider();
 
-const weatherSchema = z.object({
-  city: z.string().describe("The city name"),
-});
+const weatherSchema = z.object({});
 
 const result = await ai.generateText(
   "What's the weather like in Delhi?",
@@ -16,13 +14,13 @@ const result = await ai.generateText(
     tools: {
       getWeather: tool({
         description: "Get the current weather for a city",
-        parameters: weatherSchema,
-        execute: async ({ city }: { city: string }) => {
+        inputSchema: z.object({ city: z.string().describe("The city name") }),
+        execute: async ({ city }) => {
           const fakeData: Record<string, string> = {
             Delhi: "38°C, sunny and humid",
             Mumbai: "32°C, partly cloudy",
           };
-          return { weather: fakeData[city] ?? "Unknown" };
+          return { output: fakeData[city] ?? "Unknown" };
         },
       }),
     },
