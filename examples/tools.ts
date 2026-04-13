@@ -1,4 +1,4 @@
-import { HackclubProvider } from "../src";
+import { HackclubProvider } from "@ridit/hackclub-ai-sdk";
 import { tool } from "ai";
 import { z } from "zod";
 
