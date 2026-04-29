@@ -6,7 +6,6 @@ import {
 } from "ai";
 import type {
   HackclubImageModel,
-  HackclubModel,
   HackclubReplicateImageUtilModel,
   HackclubReplicateSTTModel,
   HackclubReplicateTTSModel,
@@ -58,7 +57,7 @@ export class HackclubProvider {
    */
   async generateText(
     prompt: string,
-    model: HackclubModel = "google/gemini-2.5-flash",
+    model: string = "google/gemini-2.5-flash",
     options: TextOptionProps = {},
   ): Promise<string> {
     const { text } = await generateTextAISDK({
@@ -97,7 +96,7 @@ export class HackclubProvider {
    */
   async streamText(
     prompt: string,
-    model: HackclubModel = "google/gemini-2.5-flash",
+    model: string = "google/gemini-2.5-flash",
     options: TextOptionProps = {},
   ) {
     const result = await streamTextAISDK({

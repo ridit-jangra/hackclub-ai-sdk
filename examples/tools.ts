@@ -4,8 +4,6 @@ import { z } from "zod";
 
 const ai = new HackclubProvider();
 
-const weatherSchema = z.object({});
-
 const result = await ai.generateText(
   "What's the weather like in Delhi?",
   "google/gemini-2.5-flash",
