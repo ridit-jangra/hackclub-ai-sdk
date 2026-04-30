@@ -1,8 +1,10 @@
 import { createOpenRouter } from "@openrouter/ai-sdk-provider";
+import { createClient, createMode } from "@ridit/ai/ai";
 import {
   generateText as generateTextAISDK,
   stepCountIs,
   streamText as streamTextAISDK,
+  type ToolSet,
 } from "ai";
 import type {
   HackclubImageModel,
@@ -22,6 +24,7 @@ import {
   TTSModelMap,
   UpscaleModelMap,
 } from "./utils/replicate";
+import { FileReadTool, GlobTool, GrepTool, ThinkTool } from "@ridit/ai/tools";
 
 export class HackclubProvider {
   private replicateProvider;
@@ -119,6 +122,32 @@ export class HackclubProvider {
     });
 
     return result.textStream;
+  }
+
+  /**
+   * Generate an image using a specified model.
+   * @param prompt - The text prompt to send to the model
+   * @param model - The model to use (auto-completions available)
+   * @param options - Generation options
+   * @param options.tools - The tools that the agent has access to
+   * @returns Promise<string> - The generated text
+   */
+  async createAgent(
+    prompt: string,
+    model: string,
+    opts: {
+      tools: ToolSet;
+    } = { tools: { FileReadTool, ThinkTool, GlobTool, GrepTool } },
+  ) {
+    const mode = createMode("hackclub-ai-mode", opts.tools);
+    const agent = createClient({
+      provider: this.createProvider()(model),
+      mode,
+    });
+
+    const { text } = await agent.run({ prompt });
+
+    return text;
   }
 
   /**
