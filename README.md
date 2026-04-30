@@ -103,6 +103,40 @@ const reply = await ai.generateText("", "google/gemini-2.5-flash", {
 
 **Default model:** `google/gemini-2.5-flash`
 
+#### `createAgent(prompt, model, options?): Promise<string>`
+
+Run an agentic loop with a set of tools. The agent will reason and use tools autonomously until it resolves the prompt.
+
+```typescript
+import { HackclubProvider } from "@ridit/hackclub-ai-sdk";
+import { FileReadTool, GlobTool, GrepTool, ThinkTool } from "@ridit/ai/tools";
+
+const ai = new HackclubProvider();
+
+// Default tools (FileReadTool, ThinkTool, GlobTool, GrepTool)
+const result = await ai.createAgent(
+  "Find all TODO comments in this codebase",
+  "google/gemini-2.5-flash",
+);
+
+// Custom tools
+const result = await ai.createAgent(
+  "Summarize the main logic in src/index.ts",
+  "deepseek/deepseek-v3",
+  {
+    tools: { FileReadTool, ThinkTool },
+  },
+);
+
+console.log(result);
+```
+
+**Default tools:** `FileReadTool`, `ThinkTool`, `GlobTool`, `GrepTool`
+
+| Option  | Type      | Default                                           | Description                  |
+| ------- | --------- | ------------------------------------------------- | ---------------------------- |
+| `tools` | `ToolSet` | `{ FileReadTool, ThinkTool, GlobTool, GrepTool }` | Tools available to the agent |
+
 #### `streamText(prompt, model?, options?): Promise<AsyncIterable<string>>`
 
 Same options as `generateText`, returns a token stream.
@@ -258,18 +292,6 @@ const url = await ai.generateMusic("Epic orchestral battle music", {
 ---
 
 ## Available Models
-
-### Text Models (`HackclubModel`)
-
-| Model                     | Best For              |
-| ------------------------- | --------------------- |
-| `google/gemini-2.5-flash` | General use (default) |
-| `deepseek/deepseek-v3.2`  | Code, reasoning       |
-| `openai/gpt-5-mini`       | Fast, capable         |
-| `moonshotai/kimi-k2.5`    | Long context          |
-| `qwen/qwen3-235b-a22b`    | Multilingual          |
-
-_Full list in `src/utils/models.ts`_
 
 ### Image Models (`HackclubImageModel`)
 
